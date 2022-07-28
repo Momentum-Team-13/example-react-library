@@ -4,8 +4,9 @@ import { BookCard } from './BookCard'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { BookDetail } from './BookDetail'
+import { Navigate } from 'react-router-dom'
 
-export const BookList = ({ token, setSelected }) => {
+export const BookList = ({ token, isLoggedIn }) => {
   const [books, setBooks] = useState([])
   const [bookTitles, setBookTitles] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -29,6 +30,10 @@ export const BookList = ({ token, setSelected }) => {
         setIsLoading(false)
       })
   }, [token])
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />
+  }
 
   if (isLoading) {
     return (

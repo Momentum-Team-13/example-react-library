@@ -3,10 +3,12 @@ import { BookList } from './components/BookList'
 import { Login } from './components/Login'
 import './App.css'
 import axios from 'axios'
+import useLocalStorageState from 'use-local-storage-state'
+import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
-  const [token, setToken] = useState(null)
-  const [username, setUsername] = useState('')
+  const [token, setToken] = useLocalStorageState('libraryToken', null)
+  const [username, setUsername] = useLocalStorageState('libraryUsername', '')
 
   const setAuth = (username, token) => {
     setToken(token)
@@ -33,10 +35,6 @@ const App = () => {
 
   const isLoggedIn = username && token
 
-  if (!isLoggedIn) {
-    return <Login setAuth={setAuth} />
-  }
-
   return (
     <>
       <header className="header is-flex is-justify-content-space-between">
@@ -52,7 +50,16 @@ const App = () => {
       <div className="logged-in-message">
         Hello, you're logged in as {username}
       </div>
-      <BookList token={token} />
+      <Routes>
+        <Route
+          path="/"
+          element={<BookList token={token} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/login"
+          element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+        />
+      </Routes>
     </>
   )
 }

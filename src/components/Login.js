@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
-export const Login = ({ setAuth, token }) => {
+import { Navigate } from 'react-router-dom'
+export const Login = ({ setAuth, isLoggedIn }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -23,6 +24,11 @@ export const Login = ({ setAuth, token }) => {
         setError(error.message)
       })
   }
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />
+  }
+
   return (
     <>
       <h2>Hello I am the Login Form</h2>
