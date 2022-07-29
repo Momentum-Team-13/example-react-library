@@ -62,7 +62,11 @@ export const Login = ({ setAuth, isLoggedIn }) => {
           </div>
         </div>
         <div className="form-submit">
-          <input type="submit" value="Log In" />
+          <input
+            className="button is-outlined is-primary"
+            type="submit"
+            value="Log In"
+          />
         </div>
       </form>
     </>
