@@ -1,10 +1,13 @@
 :root {
-  --header-background: #0B3954;
+  --header-background: #22577A;
 }
 
+.main {
+  padding: 0 1.5rem;
+}
 .error {
   padding: 20px;
-  background-color: palevioletred;
+  background-color: #F45B69;
   color: white;
 }
 

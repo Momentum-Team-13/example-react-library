@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
 
-export const BookDetail = ({ bookId, handleGoBack, token }) => {
+export const BookDetail = ({ token }) => {
   const [book, setBook] = useState(null)
+  const { bookId } = useParams()
 
   useEffect(() => {
     axios
@@ -14,11 +16,13 @@ export const BookDetail = ({ bookId, handleGoBack, token }) => {
       .then((res) => {
         setBook(res.data)
       })
-  }, [bookId])
+  }, [bookId, token])
 
   return (
     <>
-      <button onClick={handleGoBack}> Go Back to All Books </button>
+      <Link to="/" className="button is-primary is-light">
+        Go Back to All Books
+      </Link>
       {book && (
         <>
           <div className="book content container-box" id={book.pk}>
