@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 export const BookCard = ({ title, bookId, featured, setSelected }) => {
   return (
-    <Link to={`/books/${bookId}`}>
+    <Link to={`${bookId}`}>
       <div className="book card" id={bookId}>
         <div className="card-content">
           <div className="content">

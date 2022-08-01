@@ -19,6 +19,7 @@ export const BookList = ({ token, isLoggedIn }) => {
         },
       })
       .then((res) => {
+        console.log(res.data)
         const bookTitles = res.data.map((obj) => obj.title)
         setBookTitles(bookTitles)
         setBooks(res.data)

@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom'
 export const BookDetail = ({ token }) => {
   const [book, setBook] = useState(null)
   const { bookId } = useParams()
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     axios
@@ -16,6 +17,7 @@ export const BookDetail = ({ token }) => {
       .then((res) => {
         setBook(res.data)
       })
+      .catch((error) => setError(error))
   }, [bookId, token])
 
   return (
@@ -23,6 +25,7 @@ export const BookDetail = ({ token }) => {
       <Link to="/" className="button is-primary is-light">
         Go Back to All Books
       </Link>
+      {error && <h1 className="title">OH NO 404</h1>}
       {book && (
         <>
           <div className="book content container-box" id={book.pk}>

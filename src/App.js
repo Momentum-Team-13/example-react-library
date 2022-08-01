@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BookList } from './components/BookList'
 import { BookDetail } from './components/BookDetail'
 import { Login } from './components/Login'
+import NoMatch from './components/NoMatch'
 import CreateBook from './components/CreateBook'
 import './App.css'
 import axios from 'axios'
@@ -75,6 +76,7 @@ const App = () => {
             path="/login"
             element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
           />
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </main>
     </>
